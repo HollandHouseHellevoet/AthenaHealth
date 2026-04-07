@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <title>AthenaHealth · MedMerge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #0f0f0d;
+      --black-soft: #1a1a17;
+      --white: #f8f8f6;
+      --white-rule: #e4e4e0;
+      --teal: #4e8c7e;
+      --body-text: #1c1c1a;
+      --muted: #6b6b65;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--black);
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.5rem;
+      background: var(--black);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-logo {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-contact {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* HERO */
+    .hero {
+      background-color: var(--black);
+      padding: 13rem 2.5rem 7rem;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(248,248,246,0.55);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(248,248,246,0.5);
+      max-width: 560px;
+      line-height: 1.85;
+    }
+
+    /* LIGHT */
+    .light { background-color: var(--white); }
+
+    .section-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+    }
+
+    .light .eyebrow { color: var(--teal); }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--body-text);
+      margin-bottom: 2.5rem;
+    }
+
+    h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* STACCATO COPY STYLE */
+    .staccato {
+      max-width: 660px;
+    }
+
+    .staccato p {
+      font-size: 1rem;
+      color: var(--body-text);
+      line-height: 1.9;
+      margin-bottom: 0.6rem;
+    }
+
+    .staccato .gap {
+      margin-bottom: 2rem;
+    }
+
+    .staccato .emphasis {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--body-text);
+    }
+
+    /* BLOCKQUOTE */
+    blockquote {
+      border-left: 3px solid var(--teal);
+      padding: 1.2rem 0 1.2rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .light blockquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--body-text);
+      margin: 0;
+    }
+
+    .dark blockquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--white);
+      margin: 0;
+    }
+
+    .rule { height: 1px; background: var(--white-rule); }
+    .rule-dark { height: 1px; background: rgba(255,255,255,0.07); }
+
+    /* STAT GRID */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--white-rule);
+      margin: 3.5rem 0;
+    }
+
+    .stat-cell {
+      background: var(--white);
+      padding: 2.2rem 1.5rem;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--body-text);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-num span { color: var(--teal); }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* TABLE */
+    .table-wrap { margin: 3rem 0; overflow-x: auto; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+
+    thead tr { border-bottom: 2px solid var(--body-text); }
+
+    thead th {
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.9rem 1rem 0.9rem 0;
+      text-align: left;
+    }
+
+    thead th:first-child { color: var(--body-text); }
+
+    tbody tr { border-bottom: 1px solid var(--white-rule); }
+
+    tbody tr:last-child { border-bottom: 2px solid var(--body-text); }
+
+    tbody tr:last-child td {
+      font-weight: 600;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+    }
+
+    td { padding: 0.9rem 1rem 0.9rem 0; color: var(--body-text); }
+
+    /* DARK */
+    .dark { background-color: var(--black-soft); }
+
+    .dark .eyebrow { color: var(--teal); }
+
+    .dark h2 { color: var(--white); }
+
+    .dark h2 em { color: rgba(248,248,246,0.4); }
+
+    .dark .staccato p {
+      color: rgba(248,248,246,0.55);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 2.8rem 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-meta {
+      font-size: 0.75rem;
+      color: rgba(248,248,246,0.3);
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { padding: 9rem 1.5rem 5rem; }
+      .section-inner { padding: 5rem 1.5rem; }
+      .stat-grid { grid-template-columns: 1fr; }
+      footer { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://www.medmerge.co" class="nav-logo">Medmerge</a>
+    <a href="mailto:dutch@medmerge.co" class="nav-contact">dutch@medmerge.co</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">AthenaHealth · MedMerge · 2026</p>
+      <h1>The Architecture <em>Nobody Fixed</em></h1>
+      <p class="hero-sub">Athena solved how independent practices operate. No one solved how they accumulate capital.</p>
+    </div>
+  </div>
+
+  <div class="rule-dark"></div>
+
+  <!-- THE PROBLEM -->
+  <div class="light">
+    <div class="section-inner">
+      <p class="eyebrow">The Problem</p>
+      <div class="staccato">
+        <p class="gap">Every practice on Athena's platform still exports cash every month — through insurance structures designed for institutions, not independents.</p>
+        <p>Malpractice. Workers' compensation. Property. Cyber.</p>
+        <p class="gap">Every line purchased alone. Every line priced at retail.</p>
+        <p>Premiums come in.</p>
+        <p class="gap">Claims are paid over time.</p>
+        <p>The difference becomes float.</p>
+        <p class="gap">The remainder becomes surplus.</p>
+        <p class="gap emphasis">Both stay with the carrier.</p>
+        <p class="gap">The practice funds it. The practice never owns it.</p>
+        <p>UnitedHealth holds $25.5 billion of that surplus. Elevance holds $40.3 billion.</p>
+        <p>That capital was not created by the carrier. It was accumulated from the premium flows of practices like those on Athena.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- WHAT MEDMERGE BUILDS -->
+  <div class="light">
+    <div class="section-inner">
+      <p class="eyebrow">What MedMerge Builds</p>
+      <div class="staccato">
+        <p class="gap">MedMerge keeps the float and surplus inside a physician-owned structure.</p>
+        <p class="gap">Across every insurance line, the dollars no longer leave. The equity no longer leaves.</p>
+        <p class="gap">Costs drop 20–30% immediately — not as a projection, but as a function of the structure.</p>
+      </div>
+      <blockquote>
+        <p>We convert an expense into an asset.</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- ATHENA'S NETWORK -->
+  <div class="light">
+    <div class="section-inner">
+      <p class="eyebrow">Athena's Network</p>
+      <div class="staccato">
+        <p class="gap">Athena's client base represents one of the largest independent physician networks in the country.</p>
+        <p class="gap">Today, that network exports capital every month.</p>
+        <p>MedMerge turns that same flow into retained equity — inside the ecosystem Athena already powers.</p>
+      </div>
+      <blockquote>
+        <p>This is not cost savings. This is balance sheet creation.</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- THE NUMBERS -->
+  <div class="light">
+    <div class="section-inner">
+      <p class="eyebrow">The Numbers</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Conservative (10%)</th>
+              <th>Mid (25%)</th>
+              <th>Full (50%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Client practices in collective</td><td>500</td><td>1,250</td><td>2,500</td></tr>
+            <tr><td>Covered lives per practice</td><td>8</td><td>8</td><td>8</td></tr>
+            <tr><td>Total lives</td><td>4,000</td><td>10,000</td><td>20,000</td></tr>
+            <tr><td>Premium per life (all lines)</td><td>$22,000</td><td>$22,000</td><td>$22,000</td></tr>
+            <tr><td>Total premium volume</td><td>$88M</td><td>$220M</td><td>$440M</td></tr>
+            <tr><td>Equity retained (25%)</td><td>$22M</td><td>$55M</td><td>$110M</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="staccato">
+        <p>These are not new dollars.</p>
+        <p>They are dollars already leaving Athena's network every month.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DARK — CONTEXT + CLOSE -->
+  <div class="dark">
+    <div class="section-inner">
+      <p class="eyebrow">The Context</p>
+      <div class="staccato">
+        <p>In 2010, 75% of physicians were independent.</p>
+        <p class="gap">Today, that number is closer to 15%.</p>
+        <p class="gap">The shift was not clinical. It was economic.</p>
+        <p class="gap">Athena built the operating system that allowed independent practices to function. What has been missing is the structure that allows them to retain and compound capital.</p>
+      </div>
+
+      <blockquote>
+        <p>That is what durable independence looks like.</p>
+      </blockquote>
+
+      <div class="staccato" style="margin-top: 3rem;">
+        <p>Athena built the operating system for independent medicine.</p>
+        <p>MedMerge builds the balance sheet.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="https://www.medmerge.co" class="footer-logo">Medmerge</a>
+      <div class="footer-meta">Dutch Rojas &nbsp;·&nbsp; dutch@medmerge.co &nbsp;·&nbsp; 602-777-0101 &nbsp;·&nbsp; Confidential · For Discussion Only</div>
+    </div>
+  </footer>
+
+</body>
+</html>
